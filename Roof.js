@@ -1,27 +1,16 @@
-class roof{
-    constructor(x,y,w,h){
-     var options = {
-         isStatic:true,
-         restitution: 0.3,
-         friction: 0.5,
-         density:1.2
-       }
-       this.x=x;
-       this.y=y;
-       this.w=w;
-       this.h=h;
-       this.body = Bodies.rectangle(this.x,this.y,this.w,this.h, options);
-       World.add(myworld,this.body);
+class Roof{
+    constructor(x,y,width,height){
+        this.body = Bodies.rectangle(x,y,width,height,{isStatic:true});
+        this.width = width;
+        this.height = height;
+        World.add(world,this.body);
     }
-
+    
     display(){
-   
-    var paperpos=this.body.position;
-
-     push()
-     translate(paperpos.x,paperpos.y)
-     rectMode(CENTER)
-     rect(0,0,this.w,this.h)
-     pop()
+        push();
+        rectMode(CENTER);
+        fill(128,128,128);
+        rect(this.body.position.x,this.body.position.y,this.width,this.height);
+        pop();
     }
 }

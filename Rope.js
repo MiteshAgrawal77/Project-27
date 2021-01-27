@@ -1,28 +1,30 @@
-class rope {
-
-    constructor(b1, b2){
+    class Rope{
+        constructor(body1,body2,offsetX,offsetY){
+            this.offsetX = offsetX;
+            this.offsetY = offsetY;
+            var op = {
+                bodyA: body1,
+                bodyB: body2,
+                pointB: {x:this.offsetX , y:this.offsetY}
+            }
+       
+            this.rope = Matter.Constraint.create(op);
+            World.add(world,this.rope);
+           }
+           display(){
+               var point1 = this.rope.bodyA.position;
+               var point2 = this.rope.bodyB.position;
+               
+               strokeWeight(2);
     
-        var options = {
-            bodyA: b1,
-            bodyB: b2,
-            length:50,
-            stiffness:0.08
-          }
-        this.sling = Constraint.create(options)
-        World.add(myworld, this.sling)  
+               var Anchor1X = point1.x;
+               var Anchor1Y = point1.y;
     
-        
-    }
+               var Anchor2X = point2.x + this.offsetX;
+               var Anchor2Y = point2.y + this.offsetY;
     
-    display(){
-        
-       var posA = this.sling.bodyA.position
-       var posB = this.sling.bodyB.position
-       push()
-       stroke("black")
-       strokeWeight(6)
-       line(posA.x,posA.y,posB.x,posB.y)
-       pop()
-    
-    }
-    }
+               line(Anchor1X,Anchor1Y,Anchor2X,Anchor2Y);
+               
+           }
+       
+       }

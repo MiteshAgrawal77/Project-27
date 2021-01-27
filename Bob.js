@@ -1,27 +1,25 @@
-class bob{
-    constructor(x,y,r){
-     var options = {
-         isStatic:false,
-         restitution: 0.3,
-         friction: 0.5,
-         density:1.2
-       }
-       this.x=x;
-       this.y=y;
-       this.r=r;
-       this.body = Bodies.circle(this.x,this.y,this.r/2, options);
-       World.add(myworld,this.body);
-      
-    }
- 
-    display(){
-   
-  //  var paperpos=this.body.position;
+ class Bob {
 
-     push()
-   //  translate(paperpos.x,paperpos.y)
-      fill("purple")
-     pop()
+    constructor(x,y){
+        var options = {
+            isStatic: false,
+            restitution: 1,
+            friction: 0,
+            density: 7.8,
+        }
+        this.body = Bodies.circle(x,y,25,options);
+        World.add(world, this.body);
+
+        console.log(this.body);
+    
     }
- 
- }
+    
+    display(){
+        push();
+        ellipseMode(RADIUS);
+        fill(254,0,255);
+        ellipse(this.body.position.x,this.body.position.y,25,25);
+        pop();
+    }
+    
+    }
